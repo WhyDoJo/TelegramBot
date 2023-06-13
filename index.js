@@ -3,7 +3,7 @@ const {gameOptions, againOptions} = require('./options')
 const sequelize = require('./db');
 const UserModel = require('./models');
 
-const token = '1702630643:AAHXiY0MRDKeF1XcuGTxWmpgdcCdAgzt4gE'
+const token = '6009643914:AAEjAlj3DXmQkuVyg2XoEZMCdG9plGvxDMY'
 
 const bot = new TelegramApi(token, {polling: true})
 
