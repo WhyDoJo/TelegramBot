@@ -40,8 +40,8 @@ const start = async () => {
         try {
             if (text === '/start') {
                 await UserModel.create({chatId})
-                // await bot.sendSticker(chatId, `https://tlgrm.eu/_/stickers/775/a00/775a004a-7665-4a7e-8693-f12839e4bc04/1.webp`);
-                // return bot.sendMessage(chatId, `Добро пожаловть в телеграм бот, ${msg.from.first_name}`);
+                await bot.sendSticker(chatId, `https://tlgrm.eu/_/stickers/775/a00/775a004a-7665-4a7e-8693-f12839e4bc04/1.webp`);
+                return bot.sendMessage(chatId, `Добро пожаловть в телеграм бот, ${msg.from.first_name}`);
             }
             if(text === '/info') {
                 const user = await UserModel.findOne({chatId})
