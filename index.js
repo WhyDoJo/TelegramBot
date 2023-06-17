@@ -39,9 +39,9 @@ const start = async () => {
 
         try {
             if (text === '/start') {
-                // await UserModel.create({chatId})
+                await UserModel.create({chatId})
                 await bot.sendSticker(chatId, `https://tlgrm.eu/_/stickers/775/a00/775a004a-7665-4a7e-8693-f12839e4bc04/1.webp`);
-                return bot.sendMessage(chatId, `Добро пожаловть в телеграм бот автор Ибрагим`);
+                return bot.sendMessage(chatId, `Добро пожаловть в телеграм бот, ${msg.from.first_name}`);
             }
             if(text === '/info') {
                 const user = await UserModel.findOne({chatId})
@@ -52,7 +52,7 @@ const start = async () => {
             }
             return bot.sendMessage(chatId, 'Я тебя не понимаю, попробуй еще раз!')
         } catch (e) {
-            return bot.sendMessage(chatId, `Произошла какая то ошибочка!`)
+            return bot.sendMessage(chatId, `Произошла ошибочка!`)
         }
 
     })
@@ -66,9 +66,11 @@ const start = async () => {
         const user = await UserModel.findOne({chatId})
         if(data == chats[chatId]) {
             user.right += 1;
+            await bot.sendSticker(chatId, `https://tlgrm.eu/_/stickers/775/a00/775a004a-7665-4a7e-8693-f12839e4bc04/5.webp`)
             await bot.sendMessage(chatId, `Поздравляю, ты отгадал цифру ${chats[chatId]}`, againOptions)
         } else {
             user.wrong += 1;
+            await bot.sendSticker(chatId, `https://tlgrm.eu/_/stickers/775/a00/775a004a-7665-4a7e-8693-f12839e4bc04/10.webp`)
             await bot.sendMessage(chatId, `К сожалению ты не угадал, бот загадал цифру ${chats[chatId]}`, againOptions)
         }
         await user.save();
